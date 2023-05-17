@@ -1,7 +1,11 @@
 package com.smartdevicessystem;
-
+import com.smartdevicessystem.gateWay.reqHandler.RequestHandler;
+import jakarta.servlet.RequestDispatcher;
+import org.json.JSONObject;
 import java.io.*;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -13,16 +17,15 @@ public class RegisterCompany extends HttpServlet {
         message = "Hello World!";
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
 
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
-    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    public void destroy() {
+        JSONObject json = RequestHandler.parseJsonRequest(request);
+        json.put("command", "REGISTER COMPANY");
+
+        request.setAttribute("newJson", json);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/gateWayServalet");
+        dispatcher.forward(request, response);
     }
 }
