@@ -1,4 +1,4 @@
-package dataBaseUtils;
+package com.smartdevicessystem.projectUtils.dataBaseUtils;
 
 import java.util.concurrent.ConcurrentHashMap;
 

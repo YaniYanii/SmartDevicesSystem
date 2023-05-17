@@ -1,14 +1,12 @@
-package com.smartdevicessystem.gateWay.reqHandler;
+package com.smartdevicessystem.projectUtils.reqHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.Callable;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-
+import com.smartdevicessystem.projectUtils.commandFactory.CommandFactory;
 import jakarta.servlet.http.HttpServletRequest;
-import iotInfrustructure.gateWay.commandFactory.CommandFactory;
 import iotInfrustructure.gateWay.threadPool.ThreadPool;
 import org.json.JSONObject;
 
@@ -55,7 +53,7 @@ public class RequestHandler {
 	}
 			@Override
 			public JSONObject call() throws Exception {
-				return CommandFactory.getCommandFactoryInstance().execute(curJson);				
+				return CommandFactory.getCommandFactoryInstance().execute(curJson);
 			}
 	}
 }

@@ -1,17 +1,16 @@
-package iotInfrustructure.gateWay.commandFactory;
+package com.smartdevicessystem.projectUtils.commandFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
+import com.smartdevicessystem.projectUtils.config.ConfigPropertiesFileMap;
 import org.json.JSONObject;
 
-import dataBaseUtils.CachingNameDB;
-import dataBaseUtils.IGenericDB;
-import dataBaseUtils.mySqlDB.MySqlDB;
-
-import projectUtils.ConfigPropertiesFileMap;
+import com.smartdevicessystem.projectUtils.dataBaseUtils.CachingNameDB;
+import com.smartdevicessystem.projectUtils.dataBaseUtils.IGenericDB;
+import com.smartdevicessystem.projectUtils.dataBaseUtils.mySqlDB.MySqlDB;
 
 public class CommandFactory {
 	

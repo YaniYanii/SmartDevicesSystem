@@ -1,6 +1,5 @@
-package dataBaseUtils.mongoDB;
+package com.smartdevicessystem.projectUtils.dataBaseUtils.mongoDB;
 
-import dataBaseUtils.IGenericDB;
 /*
 public class MongoDB implements IGenericDB{
 

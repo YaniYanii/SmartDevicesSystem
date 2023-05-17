@@ -1,4 +1,4 @@
-package dataBaseUtils;
+package com.smartdevicessystem.projectUtils.dataBaseUtils;
 
 public interface IGenericDB {
 	void createDB(String nameDB, Object infoforCreateDB);

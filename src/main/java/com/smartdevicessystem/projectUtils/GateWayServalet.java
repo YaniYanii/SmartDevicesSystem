@@ -1,5 +1,6 @@
-package iotInfrustructure.gateWay;
+package com.smartdevicessystem.projectUtils;
 
+import com.smartdevicessystem.projectUtils.reqHandler.RequestHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,8 +10,6 @@ import java.io.IOException;
 import javax.management.RuntimeErrorException;
 
 import org.json.JSONObject;
-
-import iotInfrustructure.gateWay.reqHandler.RequestHandler;
 
 /**
  * Servlet implementation class GateWayServalet

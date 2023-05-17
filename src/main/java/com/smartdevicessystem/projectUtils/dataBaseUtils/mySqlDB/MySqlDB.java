@@ -1,11 +1,11 @@
-package dataBaseUtils.mySqlDB;
+package com.smartdevicessystem.projectUtils.dataBaseUtils.mySqlDB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.management.RuntimeErrorException;
-import dataBaseUtils.IGenericDB;
+import com.smartdevicessystem.projectUtils.dataBaseUtils.IGenericDB;
 import java.sql.SQLException;
 
 public class MySqlDB implements IGenericDB{
