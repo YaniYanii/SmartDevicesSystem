@@ -1,26 +1,28 @@
-package com.smartdevicessystem.projectUtils;
+package com.smartdevicessystem;
 
 import com.smartdevicessystem.projectUtils.reqHandler.RequestHandler;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 import java.io.IOException;
-@WebServlet(name = "RegisterProductServlet", value = "/registerProduct")
-public class RegisterProductServlet extends HttpServlet {
+
+public class RegisterIOTServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public RegisterProductServlet() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegisterIOTServlet() {
         super();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         JSONObject json = RequestHandler.parseJsonRequest(request);
-        json.put("command", "REGISTER PRODUCT");
+        json.put("command", "REGISTER IOT");
 
         request.setAttribute("newJson", json);
 

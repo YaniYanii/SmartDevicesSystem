@@ -54,7 +54,7 @@ public class CommandFactory {
 	/*-------REGISTER COMPANY COMMAND-----------*/
 	private JSONObject registerCompanyCommand(JSONObject json) {
 
-		JSONObject companyJson =  json.getJSONObject("company");
+		JSONObject companyJson =  json.getJSONObject("info_company");
 		String id = companyJson.getString("id_company");
 		String name = companyJson.getString("name_company");	
 				
@@ -110,7 +110,7 @@ public class CommandFactory {
 		rdbmMysql.writeToDB(nameDB, query);
 		
 		JSONObject respomseJsonObject = new JSONObject();
-		respomseJsonObject.append("result", "product registred");
+		respomseJsonObject.append("result", "product registered");
 		
 		return respomseJsonObject;
 	}
@@ -137,7 +137,7 @@ public class CommandFactory {
 			rdbmMysql.writeToDB(nameDB, query);
 			
 			JSONObject respomseJsonObject = new JSONObject();
-			respomseJsonObject.append("result", "product registred");
+			respomseJsonObject.append("result", "product registered");
 			
 			return respomseJsonObject;
 		}
@@ -167,4 +167,7 @@ public class CommandFactory {
 			
 			return null;
 		}
+
+	/*-------UPDATEIOT COMMAND---------------*/
+
 }

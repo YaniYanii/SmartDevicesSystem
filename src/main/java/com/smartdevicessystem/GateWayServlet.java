@@ -39,7 +39,7 @@ public class GateWayServlet extends HttpServlet {
         JSONObject jsonReq = null;
         try {
 
-            jsonReq =  RequestHandler.parseJsonRequest(request);
+            jsonReq =  (JSONObject)request.getAttribute("newJson");
         } catch (Exception e) {
             throw new RuntimeErrorException(null,e.toString());
         }
