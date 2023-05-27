@@ -24,9 +24,7 @@ public class MySqlDB implements IGenericDB{
 			System.out.println(e);
 			throw new RuntimeErrorException(null);
 		}
-		
 	}
-
 	
 	@Override
 	public void createDB(String nameDB, Object query) {

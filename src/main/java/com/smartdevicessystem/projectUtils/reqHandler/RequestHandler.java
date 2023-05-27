@@ -19,16 +19,16 @@ public class RequestHandler {
 	
 	/*---------Singleton implementation-----------*/
 	public static RequestHandler RequestHandlerInstance(){
-		return SingeltonInitClass.INSTANCE;
+		return SingletonInitClass.INSTANCE;
 	}
 	
-	private static class SingeltonInitClass{
+	private static class SingletonInitClass /**/{
 		private static RequestHandler INSTANCE = new RequestHandler();
 	}
 	/*-------------------------------------------*/
 	
 	public void addRequest(JSONObject json) {
-		threadPool.submit(new CallableRefernce(json));
+		threadPool.submit(new CallableReference(json));
 	}
 	
 	
@@ -39,15 +39,16 @@ public class RequestHandler {
 	    while ((line = reader.readLine()) != null) {
 	        stringBuilder.append(line);
 	    }
-	    String json= stringBuilder.toString();	    
+	    String json= stringBuilder.toString();
+
 	    return new JSONObject(json);
 	}
 	
 	/**********************************************************/
-	private static class CallableRefernce implements Callable<JSONObject>{
+	private static class CallableReference implements Callable<JSONObject>{
 		private final JSONObject curJson;
 		
-		CallableRefernce(JSONObject json){
+		CallableReference(JSONObject json){
 			curJson = json;	
 			
 	}

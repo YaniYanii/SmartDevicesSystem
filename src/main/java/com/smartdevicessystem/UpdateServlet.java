@@ -22,11 +22,6 @@ public class UpdateServlet extends HttpServlet {
     }
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        JSONObject json = RequestHandler.parseJsonRequest(request);
-        json.put("command", "REGISTER IOT");
-
-        request.setAttribute("newJson", json);
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/gateWayServlet");
         dispatcher.forward(request, response);
     }

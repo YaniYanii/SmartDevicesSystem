@@ -6,15 +6,15 @@ public class CachingNameDB {
 
 	private ConcurrentHashMap<String, String> mapNameDB = new ConcurrentHashMap<>();
 	
-	/*-------------SINGLETTON----------------------------------*/
+	/*-------------SINGLETON----------------------------------*/
 	private CachingNameDB() {}
 	
 	public static CachingNameDB getCachingNameDB() {
-		return InnerInstanse.iNSTANCE;
+		return InnerInstance.INSTANCE;
 	}
 	
-	private static class InnerInstanse{
-		private static CachingNameDB iNSTANCE= new CachingNameDB();
+	private static class InnerInstance {
+		private static final CachingNameDB INSTANCE= new CachingNameDB();
 	}
 	/*--------------------------------------------------------*/	
 	

@@ -13,9 +13,8 @@ import com.smartdevicessystem.projectUtils.dataBaseUtils.IGenericDB;
 import com.smartdevicessystem.projectUtils.dataBaseUtils.mySqlDB.MySqlDB;
 
 public class CommandFactory {
-	
+
 	private final ConcurrentHashMap<String, Function<JSONObject, JSONObject>> commandsTable = new ConcurrentHashMap<>();
-	
 	private final IGenericDB rdbmMysql;
 	private final String manageDB = "IOTInfoDB";
 	
@@ -27,7 +26,7 @@ public class CommandFactory {
 		commandsTable.put("REGISTER IOT", this::registerIOTCommand);
 		commandsTable.put("DUMMY", this::dummyCommand);
 		
-		ConfigPropertiesFileMap configMap = new ConfigPropertiesFileMap("/home/yana/config_app");
+		ConfigPropertiesFileMap configMap = new ConfigPropertiesFileMap("/home/yana/Documents/config/smartDeviceProj/mySqlConfig.properties");
 		rdbmMysql = new MySqlDB(configMap.get("db.url"), configMap.get("db.username"), configMap.get("db.password"));
 	}
 	
@@ -51,16 +50,17 @@ public class CommandFactory {
 	}
 	
 
-	/*-------REGISTER COMPANY COMMAND-----------*/
+	/*-------REGISTER COMPANY COMMAND- create Mongo DB-----------*/
 	private JSONObject registerCompanyCommand(JSONObject json) {
 
 		JSONObject companyJson =  json.getJSONObject("info_company");
+
 		String id = companyJson.getString("id_company");
-		String name = companyJson.getString("name_company");	
-				
-		String nameCompanyDB = AddtoMangeDB(name, id);
-		createNewDBCompany(nameCompanyDB);
-		
+		String name = companyJson.getString("name_company");
+
+		String nameCompanyDB = AddToManageDB(name, id);
+
+		createNewMySqlDBCompany(nameCompanyDB);
 		CachingNameDB.getCachingNameDB().add(id, nameCompanyDB);	
 		
 		JSONObject respomseJsonObject = new JSONObject();
@@ -68,24 +68,29 @@ public class CommandFactory {
 		
 		return respomseJsonObject;
 	}
-		
-		private String AddtoMangeDB(String name, String id) {
-			
+
+	/* TODO move it to another class, only make caching and connection if needed*/
+		private String AddToManageDB(String name, String id) {
+
 			String nameDB = new String("IOT" + id + name);
 			String[] query = new String[] {"INSERT INTO Companies(id, name, db_name) VALUES (" + id + ", '" + name + "', '" + nameDB+ "')"};
-			
-			rdbmMysql.writeToDB(manageDB, query);	
+
+			rdbmMysql.writeToDB(manageDB, query);
 			return nameDB;
-			
+
 		}
 		
-		private void createNewDBCompany(String nameDB) {
+		private void createNewMySqlDBCompany(String nameDB) {
 			String[] queriesTableCreate = new String[]{"CREATE TABLE Products (type VARCHAR(20) NOT NULL, model VARCHAR(50) NOT NULL, PRIMARY KEY (model))",
 					"CREATE TABLE IOTProducts ( serial_number INT NOT NULL, model VARCHAR(50) NOT NULL, PRIMARY KEY (serial_number), FOREIGN KEY (model) REFERENCES Products(model))",
 					"CREATE TABLE Updates ( id_update INT NOT NULL AUTO_INCREMENT, serial_number INT NOT NULL, date DATE, PRIMARY KEY (id_update), FOREIGN KEY (serial_number) REFERENCES IOTProducts(serial_number))"
 				};
 			
 			rdbmMysql.createDB(nameDB, queriesTableCreate);
+		}
+
+		private  void createNewMongoDBCompany(String nameDB){
+
 		}
 
 	
@@ -95,11 +100,12 @@ public class CommandFactory {
 	private JSONObject registerProductCommand(JSONObject json) {
 			
 		String nameDB =  CachingNameDB.getCachingNameDB().getNameDBByID(json.getString("uid"));
-		System.out.println("registerProductCommand ");
+
 		if(nameDB == null) {
+
+
 			nameDB = getNameDBfromMangeDB(json.getString("uid"));
 			CachingNameDB.getCachingNameDB().add(json.getString("uid"), nameDB);
-			
 		}
 		
 		String type = json.getJSONObject("product").getString("type");

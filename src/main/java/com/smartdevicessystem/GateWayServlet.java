@@ -35,14 +35,9 @@ public class GateWayServlet extends HttpServlet {
         reqHandler.addRequest(jsonReq);
     }
 
-    protected void doPut(HttpServletRequest request, HttpServletResponse response){
-        JSONObject jsonReq = null;
-        try {
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        JSONObject jsonReq = RequestHandler.parseJsonRequest(request);;
 
-            jsonReq =  (JSONObject)request.getAttribute("newJson");
-        } catch (Exception e) {
-            throw new RuntimeErrorException(null,e.toString());
-        }
         reqHandler.addRequest(jsonReq);
     }
 }

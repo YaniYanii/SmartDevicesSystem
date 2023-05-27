@@ -27,4 +27,7 @@ public class RegisterProductServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/gateWayServlet");
         dispatcher.forward(request, response);
     }
+
+
+    /* TODO - push to manage DB  add parameter*/
 }

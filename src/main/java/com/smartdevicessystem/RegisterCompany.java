@@ -10,7 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet(name = "RegisterCompany", value = "/registerCompany")
 public class RegisterCompany extends HttpServlet {
-    private String message;
+
     public RegisterCompany() {
         super();
     }
@@ -24,9 +24,6 @@ public class RegisterCompany extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/gateWayServlet");
         dispatcher.forward(request, response);
     }
+    /*TODO move register here and add k v (db name) for caching in register company command*/
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
 }
